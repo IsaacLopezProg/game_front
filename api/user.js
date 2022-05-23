@@ -6,7 +6,7 @@ const base = process.env.NEXT_PUBLIC_BASE_PATH;
 export async function registerApi(formData) {
     try {
         // FORMANDO LA URL
-        const url = `${base}/api/auth/local/register`;
+        const url = `${base}/auth/local/register`;
         // CREANDO EL HEAD DE PETICION
         const params = {
             method: "POST",
@@ -37,7 +37,7 @@ export async function registerApi(formData) {
 export async function LoginApi(formData) {
     try {
         // FORMANDO LA URL
-        const url = `${base}/api/auth/local`;
+        const url = `${base}/auth/local`;
         // CREANDO EL HEAD DE PETICION
         const params = {
             method: "POST",
@@ -69,7 +69,7 @@ export async function LoginApi(formData) {
 export async function resetPasswordApi(email) {
     try {
         // FORMANDO LA URL
-        const url = `${base}/api/auth/forgot-password`;
+        const url = `${base}/auth/forgot-password`;
         // CREANDO EL HEAD DE PETICION
         const params = {
             method: "POST",
@@ -102,7 +102,7 @@ export async function resetPasswordApi(email) {
 export async function getMeApi(logout) {
     try {
         // CUONSTRUIMOS LA URLA
-        const url = `${base}/api/users/me`;
+        const url = `${base}/users/me`;
         // ENVIAMOS EL FETCH O LA PETICION
         const result = await authFetch(url, null, logout);
         // ENVIAMOS LOS DATOS RECIBIDOS
@@ -121,7 +121,7 @@ export async function getMeApi(logout) {
 export async function updateNameApi(idUser, data, logout) {
     try {
         // CUONSTRUIMOS LA URLA
-        const url = `${base}/api/users/${idUser}`;
+        const url = `${base}/users/${idUser}`;
         // CREANDO EL HEAD DE PETICION
         const params = {
             method: "PUT",
@@ -151,7 +151,7 @@ export async function updateNameApi(idUser, data, logout) {
 export async function updateEmailApi(idUser, email, logout) {
     try {
         // CUONSTRUIMOS LA URLA
-        const url = `${base}/api/users/${idUser}`;
+        const url = `${base}/users/${idUser}`;
         // CREANDO EL HEAD DE PETICION
         const params = {
             method: "PUT",
@@ -180,7 +180,7 @@ export async function updateEmailApi(idUser, email, logout) {
 export async function updatePasswordApi(idUser, password, logout) {
     try {
         // CUONSTRUIMOS LA URLA
-        const url = `${base}/api/users/${idUser}`;
+        const url = `${base}/users/${idUser}`;
         // CREANDO EL HEAD DE PETICION
         const params = {
             method: "PUT",

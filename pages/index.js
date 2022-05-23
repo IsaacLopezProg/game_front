@@ -8,17 +8,17 @@ export default function Home() {
 
 
   function envio() {
-    // axios.get('http://localhost:1337/posts').then(response => {
+    // axios.get('http://localhost:1337/cheff').then(response => {
     //   console.log(response);
     // });
-    axios
-      .post('http://localhost:1337/posts', {
-        descripcion: "prueba 3",
-        titulo: "hsdfsdfsdfola"
-      })
-      .then(response => {
-        console.log(response);
-      });
+    // axios
+    //   .post('http://localhost:1337/posts', {
+    //     descripcion: "prueba 3",
+    //     titulo: "hsdfsdfsdfola"
+    //   })
+    //   .then(response => {
+    //     console.log(response);
+    //   });
 
     // axios
     //   .put('http://localhost:1337/posts/3', {

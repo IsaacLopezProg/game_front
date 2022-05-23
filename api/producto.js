@@ -8,7 +8,7 @@ const base = process.env.NEXT_PUBLIC_BASE_PATH;
 export async function getProductoApi(logout) {
     try {
         // CUONSTRUIMOS LA URLA
-        const url = `${base}/api/producto`;
+        const url = `${base}/producto`;
         // ENVIAMOS EL FETCH O LA PETICION
         const result = await authFetch(url, null, logout);
         // ENVIAMOS LOS DATOS RECIBIDOS

@@ -9,7 +9,7 @@ export async function createAddressApi(address, logout) {
     console.log(address)
     try {
         // FORMANDO LA URL
-        const url = `${base}/api/addresses`;
+        const url = `${base}/addresses`;
         // CREANDO EL HEAD DE PETICION
         const params = {
             method: "POST",

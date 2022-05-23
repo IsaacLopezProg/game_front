@@ -32,7 +32,9 @@ export default function Menu() {
             // LO GUARDAMOS EN EL STATE_USER
             setUser(response);
         })()
-    }, [auth])
+    }, [auth]);
+
+    // console.log(user);
 
 
 
@@ -96,6 +98,7 @@ export default function Menu() {
                                         <Link href="/account">
                                             <Button as='a' color='brown' >
                                                 <Icon name='user' />
+                                                {user.username}
                                                 {user.name} {user.lastname}
                                             </Button>
                                         </Link>

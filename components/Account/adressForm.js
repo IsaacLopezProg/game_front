@@ -15,7 +15,8 @@ export default function AdressForm({ setShowModal }) {
     const [loading, setLoading] = useState(false);
     // OBTENIENDO EL AUTH DEL CONTEXT
     const { auth, logout } = useAuth();
-    const id = auth.isUser;
+    const id = auth.idUser;
+    // console.log(id);
     // console.log(auth);
 
     // MANEJO Y VALIDACION DEL FORMULARIO CON FORMIK Y YUP
@@ -35,6 +36,7 @@ export default function AdressForm({ setShowModal }) {
 
     // FUNCION PARA CREAR DIRECCION
     const createAddress = async (formData) => {
+        console.log(id)
         // MOSTRANDO ANIMACION DE SEMANTIC
         setLoading(true);
         // AGREGANDO EL ID DE USUARIO A LOS DATOS
@@ -42,9 +44,10 @@ export default function AdressForm({ setShowModal }) {
             // COPIA DE LOS DATOS ACTUALES
             ...formData,
             // AGREGADO DE ID_USER
-            user: id,
+            users_permissions_user: id,
+            // console.log(id)
         };
-        console.log(formDataTemp);
+        // console.log(formDataTemp);
         // PASAMOS LOS DATOS A LA FUNCION CREATE_ADDRESS_API
         const response = await createAddressApi(formDataTemp, logout);
         console.log(response);
