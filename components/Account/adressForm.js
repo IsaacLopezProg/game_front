@@ -9,7 +9,10 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from 'react-toastify';
 
-export default function AdressForm({ setShowModal }) {
+export default function AdressForm(props) {
+
+    // EXTRAYENDO LAS FUNCIONES  
+    const { setReloadAddress, setShowModal } = props;
 
     // PARA LA ANIMACION DE CARGA DE SEMANTIC EN EL BOTON DE ENTRAR
     const [loading, setLoading] = useState(false);
@@ -29,6 +32,11 @@ export default function AdressForm({ setShowModal }) {
         onSubmit: async (formData) => {
             // PASAMOS LOS DATOS A LA FUNCION CREATE_ADDRESS
             createAddress(formData);
+            formik.resetForm();
+            //   setReloadAddreses(true);
+            setLoading(false);
+            setShowModal(false);
+            setReloadAddress(true);
 
         },
     });
@@ -36,7 +44,7 @@ export default function AdressForm({ setShowModal }) {
 
     // FUNCION PARA CREAR DIRECCION
     const createAddress = async (formData) => {
-        console.log(id)
+        // console.log(id)
         // MOSTRANDO ANIMACION DE SEMANTIC
         setLoading(true);
         // AGREGANDO EL ID DE USUARIO A LOS DATOS
@@ -50,7 +58,7 @@ export default function AdressForm({ setShowModal }) {
         // console.log(formDataTemp);
         // PASAMOS LOS DATOS A LA FUNCION CREATE_ADDRESS_API
         const response = await createAddressApi(formDataTemp, logout);
-        console.log(response);
+        // console.log(response);
         // COMPROBACION.
         if (!response) {
             // ALERT CON TOAST
@@ -61,9 +69,9 @@ export default function AdressForm({ setShowModal }) {
         else {
             // console.log(response);
             // ALERT CON TOAST
-            // toast.success("Direccion creada correctamente");
+            toast.success("Direccion creada correctamente");
             // LIMPIAR LOS CAMPOS
-            // formik.handleReset();
+            formik.handleReset();
             // OCULTANDO ANIMACION DE SEMANTIC
             setLoading(false);
             // CERRAMOS EL MODAL

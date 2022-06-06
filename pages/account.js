@@ -14,6 +14,7 @@ import BasicModal from '../components/Modals/BasicModal';
 // EXTERNAL
 import { Button, Icon } from 'semantic-ui-react';
 import AdressForm from '../components/Account/adressForm';
+import ListAdress from '../components/Account/ListAdress';
 
 export default function Account() {
 
@@ -86,6 +87,8 @@ function Adresses() {
     const [titleModal, setTitleModal] = useState("");
     // GUARDA EL COMPONENTE QUE SE VA RENDERIZAR
     const [formModal, setFormModal] = useState(null);
+    // PARA RECARGAR LA LISTA DE DIRECCIONES
+    const [reloadAddress, setReloadAddress] = useState(false);
 
     // FUNCION PARA ABRIR EL MODAL
     const openModal = (title) => {
@@ -93,7 +96,7 @@ function Adresses() {
         setTitleModal(title);
         // LO QUE SE VA A MOSTRAR EN EL MODAL
         // MOSTRANDO DE MANERA DINAMICA EL COMPONENTE
-        setFormModal(<AdressForm setShowModal={setShowModal} />);
+        setFormModal(<AdressForm setShowModal={setShowModal} setReloadAddress={setReloadAddress} />);
         // MUESTRA EL MODAL
         setShowModal(true);
     }
@@ -106,6 +109,9 @@ function Adresses() {
             </Button>
             <div className="float-right">
                 <Icon name="plus" link onClick={() => openModal("Nueva direccion")} />
+            </div>
+            <div className="mt-2 bg-white px-8 py-8">
+                <ListAdress reloadAddress={reloadAddress} setReloadAddress={setReloadAddress} />
             </div>
 
             <BasicModal

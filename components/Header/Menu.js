@@ -1,17 +1,21 @@
 // INTERNAL
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { Button, Icon, Menu } from 'semantic-ui-react';
 
 import BasicModal from '../Modals/BasicModal';
 import Auth from '../Auth/Auth';
 import useAuth from '../../hooks/useAuth';
 import { getMeApi } from '../../api/user';
+import { getPlataformApi } from '../../api/platform';
+// import { MenuPlataforms } from '../../pages/games/index';
 
 
 // EXTERNAL
-import { Button, Icon } from 'semantic-ui-react';
+import { map } from 'lodash';
 
-export default function Menu() {
+
+export default function Menu2() {
 
     // STATE QUE MUESTRA EL MODAL
     const [showModal, setShowModal] = useState(false);
@@ -21,6 +25,8 @@ export default function Menu() {
     const { logout, auth } = useAuth();
     // STATE PARA GUARDAR LOS DATOS DEL USUARIO
     const [user, setUser] = useState(undefined)
+    // STATE QUE GUARDA LAS PLATAFORMAS
+    const [plataforms, setPlataforms] = useState([])
 
     // FUNCION PARA RECIBIR LOS DATOS DEL USUARIOS
     useEffect(() => {
@@ -34,6 +40,16 @@ export default function Menu() {
         })()
     }, [auth]);
 
+    useEffect(() => {
+        (async () => {
+            // RECIBIENDO LOS DATOS DE LAS PLATAFORMAS
+            const response = await getPlataformApi();
+            // LO GUARDAMOS EN EL STATE_USER
+            setPlataforms(response || []);
+        })()
+    }, [])
+
+
     // console.log(user);
 
 
@@ -45,24 +61,13 @@ export default function Menu() {
                 <div className="container max-w-6xl flex flex-wrap justify-between items-center mx-auto">
                     <div className=" w-full md:block md:w-auto text-white">
                         <ul className="flex mt-4 justify-center md:flex-row md:mt-0 md:text-sm md:font-medium">
-                            <li>
+                            <MenuPlataforms plataforms={plataforms} />
+                            {/* <li>
                                 <Button color='brown'>
                                     <Icon name='playstation' />
                                     PlayStation
                                 </Button>
-                            </li>
-                            <li>
-                                <Button color='brown'>
-                                    <Icon name='xbox' />
-                                    Xbox
-                                </Button>
-                            </li>
-                            <li>
-                                <Button color='brown'>
-                                    <Icon name='nintendo switch' />
-                                    Nintendo
-                                </Button>
-                            </li>
+                            </li> */}
                         </ul>
                     </div>
                     <div className="w-full md:block md:w-auto text-white">
@@ -99,7 +104,7 @@ export default function Menu() {
                                             <Button as='a' color='brown' >
                                                 <Icon name='user' />
                                                 {user.username}
-                                                {user.name} {user.lastname}
+                                                {/* {user.name} {user.lastname} */}
                                             </Button>
                                         </Link>
                                     </li>
@@ -134,6 +139,27 @@ export default function Menu() {
             >
                 <Auth setTitleModal={setTitleModal} setShowModal={setShowModal} />
             </BasicModal>
+        </>
+    )
+}
+
+
+function MenuPlataforms(props) {
+    // EXTRAYENDO LAS FUNCIONES
+    const { plataforms } = props;
+    const colors = 'red';
+
+    return (
+        <>
+            <Menu inverted secondary>
+                {map(plataforms, (platform) => (
+                    <Link href={`/games/${platform.platfom}`} key={platform._id}>
+                        <Menu.Item header as="a" name={platform.platfom} style={{ color: 'white' }}>
+                            {platform.nombre}
+                        </Menu.Item>
+                    </Link>
+                ))}
+            </Menu>
         </>
     )
 }

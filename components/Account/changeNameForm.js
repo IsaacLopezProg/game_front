@@ -32,7 +32,7 @@ export default function ChangeNameForm({ user, logout }) {
             setLoading(true);
             // OBTENER RESULTADOS DEL FORMDATA
             const response = await updateNameApi(user.id, formData, logout);
-            console.log(response)
+            // console.log(response)
             // COMPROBACION DEL TOKEN
             if (response) {
                 // RECARGAR LA PAGINA CON EL CONTENIDO ACTUALIZADO
