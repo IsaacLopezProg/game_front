@@ -80,3 +80,25 @@ export async function getCountGamePlatformApi(platfom) {
     }
 
 }
+
+// FUNCION DE OBTENER LOS JUEGOS POR URL
+export async function getGameByUrlApi(path) {
+    try {
+        // FORMANDO LA URL
+        const url = `${base}/games?url=${path}`;
+        // ENVIAMOS EL FETCH O LA PETICION
+        const result = await fetch(url);
+        // RECIBIMOS LOS DATOS
+        const response = await result.json();
+        // ENVIAMOS LOS DATOS RECIBIDOS ENVIANDO EL PRIMER ELEMENTO
+        return response[0];
+
+        // MANEJO DE ERRORES
+    } catch (error) {
+        // MOSTRANDO EL ERROR DE LA PETICION
+        console.log(error);
+        // DEVOLVIENDO EL ERROR
+        return null;
+    }
+
+}

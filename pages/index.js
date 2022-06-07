@@ -15,14 +15,26 @@ export default function Home() {
 
   // FUNCION PARA LLAMAR LOS JUEGOS
   useEffect(() => {
-    (async () => {
-      // PETICION A LA API & CANTIDAD DE JUEGOS
+    // (async () => {
+    //   // PETICION A LA API & CANTIDAD DE JUEGOS
+    //   const response = await getGameApi(10);
+    //   // CONFIRMACION
+    //   if (size(response) > 0) setGame(response);
+    //   else setGame([]);
+
+    // })()
+
+
+
+    const peticion = async () => {
       const response = await getGameApi(10);
       // CONFIRMACION
       if (size(response) > 0) setGame(response);
+      // contador = size(res)
       else setGame([]);
+    }
 
-    })()
+    peticion();
   }, []);
 
 

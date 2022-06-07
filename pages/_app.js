@@ -9,6 +9,8 @@ import { getToken, removeToken, setToken } from '../api/token';
 import '../styles/globals.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'semantic-ui-css/semantic.min.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 // EXTERNAL
 import { ToastContainer, toast } from 'react-toastify';

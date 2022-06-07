@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Router, { useRouter } from 'next/router';
 import { getGamePlatformApi, getCountGamePlatformApi } from '../../api/game';
 import ListGames from '../../components/ListGames/ListGames';
+import Pagination from '../../components/Pagination/Pagination'
 
 // EXTERNAL
 import BasicLayout from '../../layouts/BasicLayout/BasicLayout';
@@ -18,10 +19,10 @@ export default function Platform() {
     // STATE DE JUEGOS
     const [game, setGame] = useState(null)
     // STATE DE COUNT DE PAGINA
-    const [count, setCount] = useState(null)
+    const [totalGames, seTotalGames] = useState(null)
 
     // DEFINIENDO EL LIMITE DE JUEGOS A RECIBIR
-    const limit = 10;
+    const limit = 2;
 
 
     // FUNCION PARA OBTENER LOS DATOS DE LA PAGINACION
@@ -35,7 +36,7 @@ export default function Platform() {
 
     }
 
-    console.log(getStartItem());
+    // console.log(getStartItem());
 
 
     useEffect(() => {
@@ -43,7 +44,8 @@ export default function Platform() {
         (async () => {
             // CONDICIONANDO
             if (query.platform) {
-                const response = await getGamePlatformApi(query.platform, limit, 0);
+                // enviado los datos a la api, getStartItem da donde empieza los juegos en cada pagina
+                const response = await getGamePlatformApi(query.platform, limit, getStartItem());
                 setGame(response || null);
             }
         })()
@@ -55,7 +57,7 @@ export default function Platform() {
             // CONDICIONANDO
             if (query.platform) {
                 const response = await getCountGamePlatformApi(query.platform);
-                setCount(response || null);
+                seTotalGames(response || null);
             }
         })()
     }, [query])
@@ -66,10 +68,23 @@ export default function Platform() {
                 {game && size(game) === 0 && (
                     <h2>No hay juegos</h2>
                 )}
+
                 {!game && <Loader active> Cargando Juegos </Loader>}
+
                 {game && size(game) > 0 && (
                     <ListGames game={game} />
                 )}
+
+                {totalGames ? (
+                    <Pagination
+                        // props de totalGames
+                        totalGames={totalGames}
+                        // props para saber en que pagina esta sino establecer 1 por default
+                        page={query.page ? parseInt(query.page) : 1}
+                        // props de limit
+                        limit={limit}
+                    />
+                ) : null}
             </div>
         </BasicLayout>
     )
