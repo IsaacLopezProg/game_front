@@ -32,7 +32,7 @@ export default function ListAdress(props) {
         (async () => {
             // PETICION
             const response = await getAddressApi(auth.idUser || auth.isUser, logout);
-            console.log(response)
+            // console.log(response)
             // GUADADO DE LOS DATOS Y SI NO DEVOLVEMOS NADA SE QUEDA VACIO
             setAddresses(response || []);
             // RECARGANDO EL COMPONENTE DE MOSTRAR

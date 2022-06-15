@@ -25,6 +25,10 @@
     "semantic-ui-react": "^2.1.2",
     "slick-carousel": "^1.8.1",
     "yup": "^0.32.11"
+    
+  },
+  "resolutions": {
+    "react-devtools-core": "4.14.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.4",

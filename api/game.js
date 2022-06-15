@@ -102,3 +102,25 @@ export async function getGameByUrlApi(path) {
     }
 
 }
+
+// FUNCION DE OBTENER LOS JUEGOS POR TITULO EN LA BUSQUEDA
+export async function getSearchGameApi(title) {
+    try {
+        // FORMANDO LA URL
+        const url = `${base}/games?_q=${title}`;
+        // ENVIAMOS EL FETCH O LA PETICION
+        const result = await fetch(url);
+        // RECIBIMOS LOS DATOS
+        const response = await result.json();
+        // ENVIAMOS LOS DATOS RECIBIDOS ENVIANDO EL PRIMER ELEMENTO
+        return response;
+
+        // MANEJO DE ERRORES
+    } catch (error) {
+        // MOSTRANDO EL ERROR DE LA PETICION
+        console.log(error);
+        // DEVOLVIENDO EL ERROR
+        return null;
+    }
+
+}

@@ -1,11 +1,12 @@
 // INTERNAL
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Button, Icon, Menu } from 'semantic-ui-react';
+import { Button, Icon, Label, Menu } from 'semantic-ui-react';
 
 import BasicModal from '../Modals/BasicModal';
 import Auth from '../Auth/Auth';
 import useAuth from '../../hooks/useAuth';
+import useCart from '../../hooks/useCart';
 import { getMeApi } from '../../api/user';
 import { getPlataformApi } from '../../api/platform';
 // import { MenuPlataforms } from '../../pages/games/index';
@@ -19,12 +20,19 @@ export default function Menu2() {
 
     // STATE QUE MUESTRA EL MODAL
     const [showModal, setShowModal] = useState(false);
+
     // STATE QUE ASIGNA EL TITULO DEL MODAL
     const [titleModal, setTitleModal] = useState("Inicia sesión");
+
     // DESTRUCTURACION DE LOS DATOS QUE VIENEN DEL AUTH_CONTEXT
     const { logout, auth } = useAuth();
+
+    // EXTRAYENDO LOS DATOS DEL USE_CART    
+    const { productsCart } = useCart();
+
     // STATE PARA GUARDAR LOS DATOS DEL USUARIO
     const [user, setUser] = useState(undefined)
+
     // STATE QUE GUARDA LAS PLATAFORMAS
     const [plataforms, setPlataforms] = useState([])
 
@@ -89,6 +97,10 @@ export default function Menu2() {
                                                 <Icon name='heart' />
                                                 Favoritos
                                             </Button>
+
+                                            {/* <Label floating color="red">
+                                                {productsCart}
+                                            </Label> */}
                                         </Link>
                                     </li>
                                     <li>
@@ -112,6 +124,11 @@ export default function Menu2() {
                                         <Link href="/cart">
                                             <Button as='a' color='brown' >
                                                 <Icon name='cart' />
+                                                {productsCart > 0 && (
+                                                    <Label color="red" circular>
+                                                        {productsCart}
+                                                    </Label>
+                                                )}
                                             </Button>
                                         </Link>
                                     </li>
