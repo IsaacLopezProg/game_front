@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^1.8.1",
+    "@stripe/stripe-js": "^1.32.0",
     "axios": "^0.27.0",
     "formik": "^2.2.9",
     "jwt-decode": "^3.1.2",
@@ -25,7 +27,6 @@
     "semantic-ui-react": "^2.1.2",
     "slick-carousel": "^1.8.1",
     "yup": "^0.32.11"
-    
   },
   "resolutions": {
     "react-devtools-core": "4.14.0"

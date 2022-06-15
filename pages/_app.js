@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import AuthContext from '../context/AuthContext';
 import CartContext from '../context/CartContext';
-import { getProductsCart, addProductCart, countingCart, removeProductCart } from '../api/cart';
+import { getProductsCart, addProductCart, countingCart, removeProductCart, removeAllProductsCart } from '../api/cart';
 import { getToken, removeToken, setToken } from '../api/token';
 
 // CSS
@@ -137,7 +137,7 @@ function MyApp({ Component, pageProps }) {
       addProductCart: (product) => addProduct(product),
       getProductsCart: getProductsCart,
       removeProductCart: (product) => removeProduct(product),
-      removeAllProductsCart: () => null,
+      removeAllProductsCart: removeAllProductsCart,
       // para actulizar la carga cada vez que count cambie
     }), [countCart]
   );
