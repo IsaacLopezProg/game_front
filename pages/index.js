@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import BasicLayout from "../layouts/BasicLayout/BasicLayout"
 import { getGameApi } from '../api/game';
 import ListGames from '../components/ListGames/ListGames';
+import Seo from '../components/Seo/Seo';
 
 // import axios from 'axios';
 import { Loader } from 'semantic-ui-react';
@@ -41,6 +42,7 @@ export default function Home() {
 
   return (
     <>
+      <Seo />
       <BasicLayout>
         <div className="pt-8 ml-4">
           {game && size(game) === 0 && (
