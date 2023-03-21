@@ -20,3 +20,4 @@ Implementing certain functions such as:
 - Back-end: Strapi.io/Node.js
 - Database: MongoDB.
 - Payment gateway: Stripe
+- Deploy front-end/back-end: vercel/heroku
